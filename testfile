@@ -2,6 +2,8 @@
 theArray:
   .space 160
   .text
+# test
+    # test
 main:
   li    $t6, 1              # Sets t6 to 1
   li    $t7, 4              # Sets t7 to 4
