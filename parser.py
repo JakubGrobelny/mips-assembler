@@ -17,13 +17,20 @@ def parse(tokens: list):
 
         if not does_match_pattern(pattern, tokens):
             raise Exception("Error! Invalid instruction operands! " + tokens[0]
-                            + ": expected " + ', '.join(pattern) + ", given "
-                            + ', '.join(tokens[1:]))
+                            + ": expected " + ', '.join(list(map(map_type, pattern))) 
+                            + ", given " + ', '.join(tokens[1:]))
 
         return encode(data, tokens, type)
 
     else:
         raise Exception("Error! Invalid instruction " + tokens[0])
+
+
+def map_type(symbol : str) -> str:
+    if symbol in internal_symbolic_registers:
+        return "$reg"
+    else:
+        return symbol
 
 
 def try_parse_number(number: str):
@@ -60,7 +67,13 @@ def is_hexadecimal(number: str) -> bool:
         return False
 
 
+def is_number(string: str) -> bool:
+    return is_hexadecimal(string) or is_decimal(string)
+
+
 def does_number_match(pattern: str, number) -> bool:
+    if not isinstance(number, int):
+        return False
     type = pattern[0]
     # Extracting the desired size of the constant
     size = int(pattern[1:], 10)
@@ -126,7 +139,7 @@ def try_translate_symbolic_register(register):
 def is_register(token: str) -> bool:
     if len(token) < 2 or token[0] != '$':
         return False
-    elif 0 <= int(token[1:]) < 32:
+    elif is_decimal(token[1:]) and 0 <= int(token[1:]) < 32:
         return True
     return False
 
@@ -134,11 +147,20 @@ def is_register(token: str) -> bool:
 def does_match_pattern(pattern: list, instruction: list) -> bool:
     if len(pattern) != len(instruction[1:]):
         return False
-    for operand in zip(pattern, instruction[1:]):
+    
+    operand_list = list(zip(pattern, instruction[1:]))
+        
+    for operand in operand_list:
         correct = operand[0]
         given = operand[1]
-        # Operand can be either a register or a numeric constant
+
+        # Operand must be either a register or a numeric constant
         if correct in internal_symbolic_registers:
-            return is_register(given)
+            if not is_register(given):
+                return False
         else:
-            return does_number_match(correct, given)
+            if not does_number_match(correct, given):
+                return False
+
+    return True
+    

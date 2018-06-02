@@ -7,3 +7,4 @@ sll $t0, $t2, 0x1A
 mflo $a3
 subu $t0, $t1, $t2
 slti $k0, $k1, 0xFFFF
+sltu $k0, $k1, $t99

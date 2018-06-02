@@ -9,12 +9,19 @@ flag_values = {
     'l' : False, # little-endian
 }
 
+
 def parse_flags(flags : list):
     for flag in flags:
         if len(flag) != 2 or flag[0] != '-' or flag[1:] not in flag_values.keys():
             print("Error! Invalid flag " + flag)
             exit(1)
         flag_values[flag[1:]] = True
+
+
+def print_instructions():
+    print("Usage: python3 main.py <filename> <flags> ...")
+    print("\nAvaliable flags:")
+    print("    -l -- enables little-endian")
 
 
 def main():
@@ -24,6 +31,9 @@ def main():
         exit(1)
     else:
         filename = argv[1]
+        if filename == '-help':
+            print_instructions()
+            exit(0)
         parse_flags(argv[2:])
         try:
             with open(filename, 'r') as file:

@@ -1,4 +1,4 @@
-def split_line(line : str):
+def split_line(line: str):
     token = ""
     tokens = []
     for c in line:
@@ -12,9 +12,10 @@ def split_line(line : str):
         tokens.append(token)
     return tokens
 
-def tokenize(lines : list):
+
+def tokenize(lines: list):
     # Removing comments
-    lines = map(lambda line : line.split('#')[0], lines)
+    lines = map(lambda line: line.split('#')[0], lines)
     # Splitting by whitespace and commas
     lines = map(split_line, lines)
     # Removing empty lines
