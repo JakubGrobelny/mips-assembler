@@ -31,5 +31,7 @@ instructions = {
     "nor"   : [['R', '100111'], 'd', 's', 't'],
     "slt"   : [['R', '101010'], 'd', 's', 't'],
     "sltu"  : [['R', '101011'], 'd', 's', 't']
-
 }
+
+# used for printing
+INSTRUCTION_MAX_LEN = len(max(instructions.keys(), key = len))

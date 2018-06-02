@@ -110,7 +110,7 @@ def try_translate_symbolic_register(register):
                     if index <= 7:
                         return '$' + str(8 + index)
                     else:
-                        return '$' + str(24 + index)
+                        return '$' + str(24-8 + index)
                 if name == 's' and 0 <= index <= 7:
                     return '$' + str(16 + index)
                 if name == 'k' and 0 <= index <= 1:
