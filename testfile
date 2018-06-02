@@ -1,5 +1,5 @@
 
-  addi  $t3, $t0, -8
+  addi  $t3, $t0, 0xA8
       addi  $t4, $t0, -4
   add   $t5,$t1, $t2         # qwerq wer qwer qwerqwer 
   addi  $t0, $t0, 4         # dfasdfsdfasdf asdfasdf  

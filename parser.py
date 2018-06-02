@@ -1,4 +1,5 @@
 from instructions import *
+from encoder import encode
 
 
 # Parses a single line of assembly program.
@@ -19,19 +20,8 @@ def parse(tokens: list):
                             + ": expected " + ', '.join(pattern) + ", given "
                             + ', '.join(tokens[1:]))
 
-        # 
-        # if type == 'R':
-        #     opcode = '0' * 6
-        #     s_reg  = '0' * 5
-        #     t_reg  = '0' * 5
-        #     d_reg  = '0' * 5
-        #     shamt  = '0' * 5
-        #     funct  = data[0][1]
-        # 
-        # elif type == 'I':
-        #     opcode = data[0][1]   
-        # else:
-        #     raise Exception("Assembler error! Invalid instruction type: " + type)
+        return encode(data, tokens, type)
+
     else:
         raise Exception("Error! Invalid instruction " + tokens[0])
 
@@ -61,7 +51,7 @@ def is_decimal(number: str) -> bool:
 
 
 def is_hexadecimal(number: str) -> bool:
-    if number[:1] != '0x':
+    if number[:2] != '0x':
         return False
     try:
         int(number, 16)
@@ -81,7 +71,7 @@ def does_number_match(pattern: str, number) -> bool:
     min_size = -(2 ** size)
 
     if pattern[0] == 'i':
-        if number is int and max_size >= number >= min_size:
+        if isinstance(number, int) and max_size >= number >= min_size:
             return True
         else:
             return False
