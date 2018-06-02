@@ -21,7 +21,7 @@ def encode(pattern : list, instruction : list, type : str):
                 registers[op[0]] = encode_register(op[1])
             # Else operand is a number (shamt)
             else:
-                shamt = fix_bin_length(dec_to_bin(op[1]), 5)
+                shamt = dec_to_bin(op[1], 5)
         
         encoded_registers = ''
         for reg in registers.keys():

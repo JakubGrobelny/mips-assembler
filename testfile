@@ -1,4 +1,9 @@
 add $s0, $s1, $s2
 addi $t0,$s3,-12
-addiu $s0, $s2,  42
+addiu $s0, $s2, 42
 xor $s7, $a3, $t5
+ori $2, $3, 0xFFFF
+sll $t0, $t2, 0x1A
+mflo $a3
+subu $t0, $t1, $t2
+slti $k0, $k1, 0xFFFF

@@ -28,3 +28,11 @@ def dec_to_bin(num : int, length : int) -> str:
 
 def dec_int_to_hex(dec : int, length : int) -> str:
     return bin_to_hex(dec_to_bin(dec, 4 * length), length)
+
+def hex_to_little_endian(num : str) -> str:
+    little_endian = ''
+    if len(num) % 2 != 0:
+        num = '0' + num
+    for byte in zip(list(num)[0::2], list(num)[1::2]):
+        little_endian = byte[0] + byte[1] + little_endian
+    return little_endian

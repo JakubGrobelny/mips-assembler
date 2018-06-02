@@ -4,7 +4,7 @@ from encoder import encode
 
 # Parses a single line of assembly program.
 def parse(tokens: list):
-    if tokens[0] in instructions:
+    if tokens[0] in instructions.keys():
         data = instructions[tokens[0]]
         type = data[0][0]
         pattern = data[1:]
