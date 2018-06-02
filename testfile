@@ -1,7 +1,4 @@
 add $s0, $s1, $s2
 addi $t0,$s3,-12
 addiu $s0, $s2,  42
-  #addi  $t3, $t0, 0xA8
-  #    addi  $t4, $t0, -4
-  #add   $t5,$t1, $t2         # qwerq wer qwer qwerqwer 
-  #addi  $t0, $t0, 4         # dfasdfsdfasdf asdfasdf  
+xor $s7, $a3, $t5

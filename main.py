@@ -22,14 +22,13 @@ def main():
                     print(".text")
                     for token in tokens:
                         operand_offset = INSTRUCTION_MAX_LEN - len(token[0])
-                        operand_offset = 0 if operand_offset < 0 else operand_offset
-                        
+                        operand_offset = ' ' * operand_offset
                         print(dec_int_to_hex(address, 8) 
                               + "    "
                               + bin_to_hex(parse(token), 8)
                               + "    "
                               + token[0]
-                              + "    " + (' ' * operand_offset)
+                              + "    " + operand_offset
                               + ','.join(token[1:]))
                         address += 4
 
