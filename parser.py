@@ -139,7 +139,7 @@ def try_translate_symbolic_register(register):
 
 
 def is_register(token: str) -> bool:
-    if len(token) < 2 or token[0] != '$':
+    if not isinstance(token, str) or len(token) < 2 or token[0] != '$':
         return False
     elif is_decimal(token[1:]) and 0 <= int(token[1:]) < 32:
         return True

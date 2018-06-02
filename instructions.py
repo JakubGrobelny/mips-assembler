@@ -1,3 +1,7 @@
+# format: [[type, opcode/funct], operands...]
+# operands: 
+# d, s, t - registers
+# i<number> - <number>-bit integer
 instructions = {
     "add"   : [['R', '100000'], 'd', 's', 't'],
     "addi"  : [['I', '001000'], 't', 's', 'i16'],

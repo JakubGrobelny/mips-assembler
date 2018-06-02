@@ -1,0 +1,13 @@
+# test of all registers (conventional names)
+
+add $zero, $at, $v0
+add $v1, $a0, $a1
+add $a2, $a3, $t0
+add $t1, $t2, $t3
+add $t4, $t5, $t6
+add $t7, $s0, $s1
+add $s2, $s3, $s4
+add $s5, $s6, $s7
+add $t8, $t9, $k0
+add $k1, $gp, $sp
+addi $fp, $ra, 0x42

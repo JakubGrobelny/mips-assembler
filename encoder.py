@@ -16,6 +16,7 @@ def encode(pattern: list, instruction: list, type: str):
         shamt = '0' * 5
         funct = pattern[0][1]
 
+        # Encoding registers and constants
         for op in zip(pattern[1:], instruction[1:]):
             if op[0] in registers:
                 registers[op[0]] = encode_register(op[1])
@@ -23,11 +24,12 @@ def encode(pattern: list, instruction: list, type: str):
             else:
                 shamt = dec_to_bin(op[1], 5)
 
+        # Joining the encoded values
         encoded_registers = ''
         for reg in registers.keys():
             encoded_registers += registers[reg]
-
         result = opcode + encoded_registers + shamt + funct
+        
         return result
 
     if type == 'I':
@@ -45,11 +47,12 @@ def encode(pattern: list, instruction: list, type: str):
             else:
                 immediate = dec_to_bin(op[1], 16)
 
+        # Joining the encoded values
         encoded_registers = ''
         for reg in registers.keys():
             encoded_registers += registers[reg]
-
         result = opcode + encoded_registers + immediate
+        
         return result
 
     else:
