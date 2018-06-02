@@ -1,6 +1,7 @@
 from sys import argv
 from lexer import tokenize
 from parser import parse
+from util import bin_to_hex
 
 
 def main():
@@ -20,13 +21,11 @@ def main():
                 
                 try:
                     for token in tokens:
-                        print(parse(token))
+                        print(parse(token) + " " + bin_to_hex(parse(token), 8))
                 except Exception as exc:
                     print(exc)
         except:
             print("Error! Failed to open " + filename + "!")
             exit(1)
-
-
 
 main()

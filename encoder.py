@@ -40,7 +40,7 @@ def encode(pattern : list, instruction : list, type : str):
                 registers[op[0]] = encode_register(op[1])
             # Else operand is a number (immediate)
             else:
-                immediate = fix_bin_length(dec_to_bin(op[1]), 16)
+                immediate = dec_to_bin(op[1], 16)
         
         encoded_registers = ''
         for reg in registers.keys():
@@ -63,8 +63,16 @@ def fix_bin_length(binary : str, length : int) -> str:
         return binary
 
 
-def dec_to_bin(num : int) -> str:
-    return str(bin(num))[2:]
+def dec_to_bin(num : int, length : int) -> str:
+    if num > 0:
+        return fix_bin_length(str(bin(num))[2:], length)
+    else:
+        positive = str(bin(-num))[2:]
+        negated = '1' * (length - len(positive))
+        for c in positive:
+            negated += '1' if c == '0' else '0'
+        num = int(negated, 2) + 1
+        return str(bin(num))[2:]
 
 
 def encode_register(reg : str) -> str:
