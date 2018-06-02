@@ -20,7 +20,4 @@ def tokenize(lines : list):
     # Removing empty lines
     lines = list(filter(None, lines))
 
-    for line in lines:
-        print(line)
-
     return lines

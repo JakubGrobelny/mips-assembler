@@ -19,19 +19,19 @@ def parse(tokens: list):
                             + ": expected " + ', '.join(pattern) + ", given "
                             + ', '.join(tokens[1:]))
 
-        if type == 'R':
-            opcode = '0' * 6
-            s_reg  = '0' * 5
-            t_reg  = '0' * 5
-            d_reg  = '0' * 5
-            shamt  = '0' * 5
-            funct  = data[0][1]
-
-        elif type == 'I':
-            opcode = data[0][1]
-            
-        else:
-            raise Exception("Assembler error! Invalid instruction type: " + type)
+        # 
+        # if type == 'R':
+        #     opcode = '0' * 6
+        #     s_reg  = '0' * 5
+        #     t_reg  = '0' * 5
+        #     d_reg  = '0' * 5
+        #     shamt  = '0' * 5
+        #     funct  = data[0][1]
+        # 
+        # elif type == 'I':
+        #     opcode = data[0][1]   
+        # else:
+        #     raise Exception("Assembler error! Invalid instruction type: " + type)
     else:
         raise Exception("Error! Invalid instruction " + tokens[0])
 
@@ -93,7 +93,7 @@ internal_symbolic_registers = ['s', 'd', 't']
 
 
 def try_translate_symbolic_register(register):
-    if register is str and register[0] == '$':
+    if isinstance(register, str) and register[0] == '$':
         if is_decimal(register[1:]) and 0 <= int(register[1:]) < 32:
             return register
         else:
