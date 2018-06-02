@@ -55,7 +55,7 @@ def main():
                               + encoded
                               + "    "
                               + token[0]
-                              + "    " + operand_offset
+                              + " " + operand_offset
                               + ','.join(token[1:]))
                         address += 4
 

@@ -15,7 +15,9 @@ def parse(tokens: list):
         # Removing symbolic register names
         tokens = list(map(try_translate_symbolic_register, tokens))
 
+
         if not does_match_pattern(pattern, tokens):
+            tokens = list(map(lambda x : str(x), tokens))
             raise Exception("Error! Invalid instruction operands! " + tokens[0]
                             + ": expected " + ', '.join(list(map(map_type, pattern))) 
                             + ", given " + ', '.join(tokens[1:]))
