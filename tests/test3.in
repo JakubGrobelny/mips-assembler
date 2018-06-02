@@ -1,0 +1,7 @@
+sll $3, $6, 23
+srl $5, $3, 0x10
+sllv $3, $5, $14 # random comment
+mflo $5
+# more comments
+xori $3, $5, 0x1F
+divu $4, $8
