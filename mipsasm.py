@@ -6,7 +6,8 @@ from instructions import INSTRUCTION_MAX_LEN
 
 flag_values = {
     'l': False,  # little-endian
-    's': False
+    's': False,
+    'e': False
 }
 
 
@@ -23,6 +24,7 @@ def print_instructions():
     print("\nAvaliable flags:")
     print("    -l -- enables little-endian")
     print("    -s -- disables address, instruction and operand printing")
+    print("    -e -- makes the assembler ignore errors and carry on")
 
 
 def main():
@@ -52,8 +54,14 @@ def main():
                         operand_offset = INSTRUCTION_MAX_LEN - len(token[0])
                         operand_offset = ' ' * operand_offset
                         
-                        # Instruction as a hexadecimal number.
-                        encoded = bin_to_hex(parse(token), 8)
+                        try:
+                            # Instruction as a hexadecimal number.
+                            encoded = bin_to_hex(parse(token), 8)
+                        except Exception as exc:
+                            if not flag_values['e']:
+                                raise exc
+                            print(exc)
+                            encoded = '[invalid]'
 
                         # -l flag enables little-endian
                         if flag_values['l']:

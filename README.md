@@ -5,12 +5,18 @@ Usage:
 
     python3 mipsasm.py «filename» «flags ...»
 
+    or
+
+    python3 mipsasm.py -help
+
     Available flags:
 
         -l – displays encoded instructions using little-endian
             (big-endian by default)
         -s – displays simplified output, without addresses, 
             instructions and operands
+        -e – makes the assembler ignore errors and translate
+            all instructions
 
     Output is printed using following format:
 
@@ -45,4 +51,5 @@ Testing:
     'test0.in' and 'test1.in' contain tests of every register supported
     by the assembler ($0...$31 and conventional names respectively).
     'test-error.in' contains invalid assembly code that
-    should cause the assembler to display proper errors.
+    should cause the assembler to display proper errors (this test should
+    be run with '-e' flag).
